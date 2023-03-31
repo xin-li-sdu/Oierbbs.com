@@ -1,0 +1,148 @@
+#include<stdio.h>
+#include<conio.h>
+#include<pthread.h>
+#include<stdlib.h>
+#include<windows.h>
+#include<time.h>
+#include<math.h>
+#define dou double
+#define itr int
+#define fo for(i=0;i<=9;i++)
+#define R 12
+pthread_t tid,tid1,tid3;
+dou m,a[11]= {0.1,0.3,1,4,16,64,256,1024,4096,16384};
+dou b[11]= {64,512,4096,32768,262144,2097152,16777216,134217728,1073741824,8589934592.0};
+dou upg[11]= {512,4096,32768,262144,2097152,16777216,134217728,1073741824,8589934592.0,68719476736.0};
+dou bs=1,mt=0.05;
+char dy[99]= {')','!','@','#','$','%','^','&','*','(','-','='},mp[666];
+dou q[11];
+FILE* f3;
+void co1()
+{
+	COORD c;
+	c.X=0;
+	c.Y=0;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),c);
+}
+void co(int color1)
+{
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),color1);
+}
+dou inc2()
+{
+	int i;
+	dou rt=0;
+	fo
+	rt+=a[i]*q[i];
+	return rt;
+}
+dou inc()
+{
+	return bs+inc2()*mt;
+}
+dou bsc()
+{
+	return bs*bs+bs*bs*bs*0.01+bs*bs*bs*bs*0.000001;
+}
+dou rtc()
+{
+	return pow(10000000000,mt);
+}
+void* f1(void* args)//另一个线程，负责拐弯
+{
+	char c,d;
+	for(;;)
+	{
+		d=c;
+		c=getch();
+		if(c>='0'&&c<='9')
+		{
+			c-='0';
+			if(m>b[c])
+			{
+				q[c]++;
+				m-=b[c];
+				b[c]*=1.03;
+				if((int)q[c]%20==0)
+					a[c]*=(1.02+c/50.0);
+				if((int)q[c]%50==0)
+					a[c]*=(1.05+c/20.0);
+			}
+		}
+		else if(mp[c])
+		{
+			c=mp[c]-1;
+			if(c<10)
+			{
+				if(m>upg[c])
+				{
+					a[c]*=2;
+					m-=upg[c];
+					upg[c]*=8.0-c/2.0;
+				}
+			}
+			else if(c==10&&m>bsc())
+			{
+				m-=bsc();
+				bs++;
+			}
+			else if(c==11&&m>rtc())
+			{
+				m-=rtc();
+				mt+=0.01;
+			}
+		}
+		else if(c!=d)
+			m+=inc();
+		else
+			m+=inc()/10.0;
+	}
+}
+void* f2(void* args)
+{
+	for(;;)
+	{
+		Sleep(rand()%(int)(1000/(1+bs*0.001))+1);
+		m+=inc2()*rand()/16384;
+	}
+}
+void* clr(void* args)
+{
+	for(;;)
+	{
+		Sleep(5000);
+		system("cls");
+	}
+}
+int main()
+{
+	int i,ma;
+	dou mx=0;
+	srand(time(0));
+	pthread_create (&tid,0,f1,0);
+	pthread_create (&tid1,0,f2,0);
+	//pthread_create (&tid3,0,clr,0);
+	for(i=0; i<R; i++)
+		mp[dy[i]]=i+1;
+	for(;;)
+	{
+		mx=0;
+		co1();
+		printf("Money : %.2lf         \nTime result : %.2lf    Click result : %.2lf \n",m,inc2(),inc());
+		printf("General level : %.2lf    Upgrade cost : %.2lf -\nClicking ratio : %.2lf    Ratio upgrade: %.2lf =\n",bs,bsc(),mt,rtc());
+		fo
+		{
+			if(a[i]/b[i]>mx)
+			{
+				mx=a[i]/b[i];
+				ma=i;
+			}
+		}
+		printf("Suggestion:%d\n",ma);
+		printf("Farm# Quantity    Income per farm        Doubling cost         Price            Tot income\n");
+		fo
+		{
+			printf("  %d %7.0lf %18.3lf %20.0lf %20.2lf %20.2lf\n",i,q[i],a[i],upg[i],b[i],q[i]*a[i]);
+		}
+	}
+}

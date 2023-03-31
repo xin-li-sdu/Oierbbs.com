@@ -1,0 +1,1 @@
+<?php if(!defined('IN_DISCUZ')) exit('Access Denied'); hookscriptoutput('spacecp_click');?><?php include template('common/header'); if($_GET['op'] == 'show') { include template('home/space_click'); } include template('common/footer'); ?>
