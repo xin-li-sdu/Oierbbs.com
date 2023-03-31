@@ -1,0 +1,90 @@
+
+/* start editing from here */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+ol,ul{list-style:none;margin:0;padding:0;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+/* start editing from here */
+a{text-decoration:none;}
+.txt-rt{text-align:right;}/* text align right */
+.txt-lt{text-align:left;}/* text align left */
+.txt-center{text-align:center;}/* text align center */
+.float-rt{float:right;}/* float right */
+.float-lt{float:left;}/* float left */
+.clear{clear:both;}/* clear float */
+.pos-relative{position:relative;}/* Position Relative */
+.pos-absolute{position:absolute;}/* Position Absolute */
+.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
+.vertical-top{	vertical-align:top;}/* vertical align top */
+.underline{	padding-bottom:5px;	border-bottom: 1px solid #eee; margin:0 0 20px 0;}/* Add 5px bottom padding and a underline */
+nav.vertical ul li{	display:block;}/* vertical menu */
+nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
+img{max-width:100%;}
+/*end reset*/
+
+body {
+   font-family: constantia;
+}
+
+.copyright {
+  position:fixed; width: 100%; bottom: 5%;
+  margin: auto;
+  text-align: center;
+  font-family: constantia;
+  font-size: 140%;
+}
+.copyright p {
+  color: #fff;
+}
+.copyright p a{
+  color:#8EDB15;
+}
+
+#myCanvas
+{
+	display: block;
+}
+
+#jumpbutton
+{
+  color: #fff;
+  padding: 1% 1% 1% 1%;
+  width: 220px;
+  text-align: center;
+  margin-left: -110px;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  border-radius: 10000px 10000px 10000px 10000px;
+  -webkit-border-radius:10000px 10000px 10000px 10000px;
+  -moz-border-radius:10000px 10000px 10000px 10000px;
+  -o-border-radius:10000px 10000px 10000px 10000px;
+  background:#7ac209;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  background: #7ac209;
+  font-family: constantia;
+  font-size: 155%;
+}
+
+#jumpbutton2
+{
+  color: #fff;
+  padding: 0.4% 0.1% 0.4% 0.1%;
+  width: 6.8%;
+  text-align: center;
+  border-radius: 10000px 10000px 10000px 10000px;
+  -webkit-border-radius:10000px 10000px 10000px 10000px;
+  -moz-border-radius:10000px 10000px 10000px 10000px;
+  -o-border-radius:10000px 10000px 10000px 10000px;
+  background:#7ac209;
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  background: #7ac209;
+  font-family: constantia;
+  font-size: 70%;
+}
